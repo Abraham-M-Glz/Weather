@@ -7,7 +7,7 @@ import 'home.dart';
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
 
-  GeoController _controller = Get.put(GeoController());
+  WeatherController _controller = Get.put(WeatherController());
   TextEditingController _cityCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
