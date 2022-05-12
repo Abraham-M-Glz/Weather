@@ -8,6 +8,7 @@ class WeatherController extends GetxController {
   var mykey = "fe07e996a581f3a77eb536951944038b";
   var data = {}.obs;
   var whetherKey = "665ddb5a98c76560285d8bec97acf997";
+  var celsius = 0.0.obs;
   geolocation(location) async {
     var response = await http.get(
         Uri.parse("http://api.positionstack.com/v1/forward?access_key=" +
@@ -22,7 +23,6 @@ class WeatherController extends GetxController {
 
     print(request["data"][0]["latitude"]);
     print(request["data"][0]["longitude"]);
-    refresh();
     currentWhether(latitude, longitude);
   }
 
@@ -36,11 +36,9 @@ class WeatherController extends GetxController {
             whetherKey),
         headers: {"Accept": "application/json"});
 
-    data = json.decode(response.body);
-    print(data);
-    // print(data["weather"]);
-    //print(data["weather"]);
+    data.assignAll(json.decode(response.body));
+    celsius.value = data["main"]["temp"] - 273;
     refresh();
-    //return data.assignAll(data["weather"]);
+    print(data['weather']);
   }
 }
