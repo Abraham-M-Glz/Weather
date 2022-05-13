@@ -9,7 +9,7 @@ class WeatherController extends GetxController {
   var data = {}.obs;
   var whetherKey = "665ddb5a98c76560285d8bec97acf997";
   var celsius = 0.0.obs;
-  bool isLoading = true.obs as bool;
+  RxBool isLoading = true.obs;
   geolocation(location) async {
     var response = await http.get(
         Uri.parse("http://api.positionstack.com/v1/forward?access_key=" +
@@ -39,7 +39,7 @@ class WeatherController extends GetxController {
 
     data.assignAll(json.decode(response.body));
     celsius.value = data["main"]["temp"] - 273;
-    isLoading = false;
+    isLoading.value = false;
     refresh();
     print(data['weather']);
   }

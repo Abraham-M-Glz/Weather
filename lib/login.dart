@@ -3,6 +3,7 @@ import 'package:itktask/controllers/controller.dart';
 import 'package:get/get.dart';
 
 import 'home.dart';
+import 'homes.dart';
 
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class Login extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         _controller.geolocation(_cityCtrl.text);
-                        Get.to(Home());
+                        Get.to(Homes());
                       },
                       child: Text("find", style: TextStyle(fontSize: 20)),
                       style: ElevatedButton.styleFrom(
